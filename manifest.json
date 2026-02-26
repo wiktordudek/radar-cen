@@ -1,0 +1,54 @@
+{
+  "manifest_version": 3,
+  "name": "Radar Cen",
+  "version": "0.1.0",
+  "description": "Displays historical price data on Ceneo.pl product listings.",
+  "author": "Wiktor Dudek",
+
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png"
+  },
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "@radar-cen",
+      "strict_min_version": "147.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
+
+  "action": {
+    "default_icon": {
+      "48": "icons/icon-48.png"
+    },
+    "default_popup": "popup/popup.html",
+    "default_title": "Radar Cen"
+  },
+
+  "background": {
+    "scripts": ["background/background.js"]
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://www.ceneo.pl/*"],
+      "js": [
+        "content/cache.js",
+        "content/renderer.js",
+        "content/queue.js",
+        "content/content.js",
+        "content/logger.js"
+      ],
+      "css": ["content/content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "permissions": ["storage", "tabs", "scripting"],
+
+  "host_permissions": ["https://www.ceneo.pl/*"]
+}

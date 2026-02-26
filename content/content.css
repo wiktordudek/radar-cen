@@ -1,0 +1,131 @@
+:root {
+  --ph-bg-best: #dcfce7;
+  --ph-text-best: #166534;
+  --ph-border-best: #22c55e;
+
+  --ph-bg-good: #fef3c7;
+  --ph-text-good: #92400e;
+  --ph-border-good: #f59e0b;
+
+  --ph-bg-bad: #fee2e2;
+  --ph-text-bad: #991b1b;
+  --ph-border-bad: #ef4444;
+
+  --ph-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --ph-shadow-hover: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Wrapper, a badge container injected inside the product row */
+.ph-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+  font-family: Arial, sans-serif;
+  opacity: 0;
+  animation: ph-fade-in 0.4s ease-out forwards;
+}
+
+/* edge case fix: center in tile products view */
+.cat-prod-box .ph-wrapper {
+  justify-content: center;
+  margin-top: 6px;
+}
+
+/* Badge */
+.ph-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #fff;
+  border-left: 4px solid #ccc;
+  box-shadow: var(--ph-shadow);
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: default;
+  min-width: 90px;
+}
+
+/* Tile products view: move border to bottom */
+.cat-prod-box .ph-badge {
+  align-items: center;
+  border-left: none;
+  border-bottom: 3px solid #ccc;
+  width: 100%;
+}
+
+.ph-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--ph-shadow-hover);
+}
+
+/* Badge color variants */
+.ph-badge.is-best {
+  background-color: var(--ph-bg-best);
+  border-color: var(--ph-border-best);
+  color: var(--ph-text-best);
+}
+.ph-badge.is-good {
+  background-color: var(--ph-bg-good);
+  border-color: var(--ph-border-good);
+  color: var(--ph-text-good);
+}
+.ph-badge.is-bad {
+  background-color: var(--ph-bg-bad);
+  border-color: var(--ph-border-bad);
+  color: var(--ph-text-bad);
+}
+
+/* Badge typography */
+.ph-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ph-detail {
+  font-size: 10px;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+.ph-percent {
+  font-size: 13px;
+  font-weight: 800;
+}
+
+/* Skeleton / Loading animation */
+.ph-skeleton {
+  width: 80px;
+  height: 24px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  border-radius: 6px;
+  animation: ph-loading 1.5s infinite;
+}
+
+/* Animations */
+@keyframes ph-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ph-loading {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
